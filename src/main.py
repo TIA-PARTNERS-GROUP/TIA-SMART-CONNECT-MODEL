@@ -115,11 +115,15 @@ class LinkPredictor(torch.nn.Module):
     def __init__(self, in_channels, hidden_channels, out_channels):
         super().__init__()
         self.conv1 = GCNConv(in_channels, hidden_channels)
-        self.conv2 = GCNConv(hidden_channels, out_channels)
-
+        self.conv2 = GCNConv(hidden_channels, hidden_channels)  # Additional layer
+        self.conv3 = GCNConv(hidden_channels, out_channels)  # Deeper network
+        self.dropout = torch.nn.Dropout(0.5)  # Regularization
+        
     def forward(self, x, edge_index):
         x = self.conv1(x, edge_index).relu()
-        return self.conv2(x, edge_index)
+        x = self.dropout(x)
+        x = self.conv2(x, edge_index).relu()
+        return self.conv3(x, edge_index)
 
 model = LinkPredictor(in_channels=3, hidden_channels=16, out_channels=8)
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
@@ -150,7 +154,7 @@ def test(data):
         
         return correct / len(data.y)
 
-for epoch in range(1, 101):
+for epoch in range(1, 101 * 2):
     loss = train()
 
     if epoch % 10 == 0:
@@ -180,7 +184,7 @@ def visualize_predictions(data, threshold=0.7):
     with torch.no_grad():
         pred_scores = torch.sigmoid((z[all_possible_edges[0]] * z[all_possible_edges[1]]).sum(dim=1))
 
-    top_k = min(20, len(pred_scores))
+    top_k = min(50, len(pred_scores))
     top_indices = pred_scores.topk(top_k).indices
 
     for idx in top_indices:
