@@ -1,0 +1,712 @@
+2025-08-22 06:09:00,548 [INFO] - Configuration loaded successfully.
+2025-08-22 06:09:00,548 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 06:09:00,549 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 06:09:00,549 [INFO] - Use pytorch device_name: cpu
+2025-08-22 06:09:00,550 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 06:09:03,908 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 06:09:03,929 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 06:09:04,439 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 06:09:04,451 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 06:09:04,651 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 06:09:05,648 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 06:09:05,939 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 06:09:06,220 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 06:09:06,231 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 06:09:06,243 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 06:09:06,733 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 06:09:06,899 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 06:09:07,067 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 06:09:07,067 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 06:09:08,727 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 06:09:08,727 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 06:09:08,754 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 06:09:08,757 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 06:09:08,757 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 06:09:08,757 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 06:09:08,757 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 06:09:08,758 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 06:09:08,758 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 06:09:08,759 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 06:09:08,759 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 06:09:08,760 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 06:09:08,760 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 06:09:08,761 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 06:09:08,761 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 06:09:08,761 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 06:09:08,761 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 06:09:08,763 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'CREATED', 'UserPost') label distribution: [200, 400]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [200, 400]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [126, 252]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [200, 400]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [200, 400]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'MANAGES', 'Project') label distribution: [80, 160]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [200, 400]
+2025-08-22 06:09:08,767 [INFO] - [Train] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [400, 801]
+2025-08-22 06:09:08,767 [INFO] - [Val] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:09:08,767 [INFO] - [Val] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:09:08,767 [INFO] - [Val] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:09:08,767 [INFO] - [Val] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:09:08,767 [INFO] - [Val] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:09:08,767 [INFO] - [Val] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:09:08,768 [INFO] - [Val] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:09:08,768 [INFO] - [Val] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:09:08,768 [INFO] - [Test] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:09:08,806 [INFO] - Model initialized. Starting training for 501 epochs.
+2025-08-22 06:09:08,865 [INFO] - Epoch 000 | Loss: 5.5527
+2025-08-22 06:09:08,879 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:09,216 [INFO] - Epoch 010 | Loss: 4.3079
+2025-08-22 06:09:09,229 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:09,613 [INFO] - Epoch 020 | Loss: 3.3378
+2025-08-22 06:09:09,627 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:09,949 [INFO] - Epoch 030 | Loss: 2.6689
+2025-08-22 06:09:09,968 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:10,295 [INFO] - Epoch 040 | Loss: 2.1922
+2025-08-22 06:09:10,306 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:10,650 [INFO] - Epoch 050 | Loss: 1.8599
+2025-08-22 06:09:10,666 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:11,222 [INFO] - Epoch 060 | Loss: 1.6254
+2025-08-22 06:09:11,246 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:12,051 [INFO] - Epoch 070 | Loss: 1.4548
+2025-08-22 06:09:12,096 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:12,943 [INFO] - Epoch 080 | Loss: 1.3285
+2025-08-22 06:09:13,015 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:13,981 [INFO] - Epoch 090 | Loss: 1.2319
+2025-08-22 06:09:14,007 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:14,669 [INFO] - Epoch 100 | Loss: 1.1545
+2025-08-22 06:09:14,694 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:15,380 [INFO] - Epoch 110 | Loss: 1.0906
+2025-08-22 06:09:15,403 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:16,050 [INFO] - Epoch 120 | Loss: 1.0375
+2025-08-22 06:09:16,073 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:16,711 [INFO] - Epoch 130 | Loss: 0.9968
+2025-08-22 06:09:16,739 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:17,568 [INFO] - Epoch 140 | Loss: 0.9573
+2025-08-22 06:09:17,617 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:18,676 [INFO] - Epoch 150 | Loss: 0.9258
+2025-08-22 06:09:18,715 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:19,492 [INFO] - Epoch 160 | Loss: 0.8991
+2025-08-22 06:09:19,517 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:20,315 [INFO] - Epoch 170 | Loss: 0.8758
+2025-08-22 06:09:20,340 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:21,022 [INFO] - Epoch 180 | Loss: 0.8558
+2025-08-22 06:09:21,048 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:21,731 [INFO] - Epoch 190 | Loss: 0.8384
+2025-08-22 06:09:21,756 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:22,424 [INFO] - Epoch 200 | Loss: 0.8321
+2025-08-22 06:09:22,450 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:23,255 [INFO] - Epoch 210 | Loss: 0.8142
+2025-08-22 06:09:23,286 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:24,079 [INFO] - Epoch 220 | Loss: 0.8002
+2025-08-22 06:09:24,106 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:24,797 [INFO] - Epoch 230 | Loss: 0.7912
+2025-08-22 06:09:24,823 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:25,580 [INFO] - Epoch 240 | Loss: 0.7827
+2025-08-22 06:09:25,606 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:26,261 [INFO] - Epoch 250 | Loss: 0.7752
+2025-08-22 06:09:26,283 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:26,832 [INFO] - Epoch 260 | Loss: 0.7687
+2025-08-22 06:09:26,856 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:27,459 [INFO] - Epoch 270 | Loss: 0.7631
+2025-08-22 06:09:27,480 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:28,065 [INFO] - Epoch 280 | Loss: 0.7624
+2025-08-22 06:09:28,089 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:28,632 [INFO] - Epoch 290 | Loss: 0.7557
+2025-08-22 06:09:28,653 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:29,352 [INFO] - Epoch 300 | Loss: 0.7500
+2025-08-22 06:09:29,383 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:30,184 [INFO] - Epoch 310 | Loss: 0.7459
+2025-08-22 06:09:30,219 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:31,243 [INFO] - Epoch 320 | Loss: 0.7426
+2025-08-22 06:09:31,281 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:32,018 [INFO] - Epoch 330 | Loss: 0.7397
+2025-08-22 06:09:32,043 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:32,760 [INFO] - Epoch 340 | Loss: 0.7369
+2025-08-22 06:09:32,784 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:33,443 [INFO] - Epoch 350 | Loss: 0.7454
+2025-08-22 06:09:33,468 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:34,495 [INFO] - Epoch 360 | Loss: 0.7380
+2025-08-22 06:09:34,526 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:35,222 [INFO] - Epoch 370 | Loss: 0.7312
+2025-08-22 06:09:35,246 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:35,965 [INFO] - Epoch 380 | Loss: 0.7291
+2025-08-22 06:09:35,991 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:36,605 [INFO] - Epoch 390 | Loss: 0.7274
+2025-08-22 06:09:36,629 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:37,187 [INFO] - Epoch 400 | Loss: 0.7258
+2025-08-22 06:09:37,209 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:37,735 [INFO] - Epoch 410 | Loss: 0.7243
+2025-08-22 06:09:37,756 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:38,272 [INFO] - Epoch 420 | Loss: 0.7230
+2025-08-22 06:09:38,293 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:38,818 [INFO] - Epoch 430 | Loss: 0.7217
+2025-08-22 06:09:38,839 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:39,346 [INFO] - Epoch 440 | Loss: 0.7205
+2025-08-22 06:09:39,366 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:40,005 [INFO] - Epoch 450 | Loss: 0.7194
+2025-08-22 06:09:40,026 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:40,568 [INFO] - Epoch 460 | Loss: 0.7184
+2025-08-22 06:09:40,586 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:41,259 [INFO] - Epoch 470 | Loss: 0.7304
+2025-08-22 06:09:41,282 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:41,950 [INFO] - Epoch 480 | Loss: 0.7184
+2025-08-22 06:09:41,975 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:42,771 [INFO] - Epoch 490 | Loss: 0.7163
+2025-08-22 06:09:42,900 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:44,046 [INFO] - Epoch 500 | Loss: 0.7156
+2025-08-22 06:09:44,081 [INFO] - [Val] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:44,082 [INFO] - Training complete. Evaluating on test set...
+2025-08-22 06:09:44,117 [INFO] - [Test] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:09:44,135 [INFO] - Model saved to ./models/model.pth
+2025-08-22 06:12:03,553 [INFO] - Configuration loaded successfully.
+2025-08-22 06:12:03,553 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 06:12:03,554 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 06:12:03,555 [INFO] - Use pytorch device_name: cpu
+2025-08-22 06:12:03,555 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 06:12:06,834 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 06:12:06,864 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 06:12:07,375 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 06:12:07,391 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 06:12:07,639 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 06:12:08,464 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:08,642 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 06:12:08,858 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 06:12:08,867 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 06:12:08,876 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 06:12:09,320 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:09,491 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 06:12:09,662 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 06:12:09,662 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:11,263 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:11,263 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 06:12:11,283 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 06:12:11,285 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 06:12:11,285 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 06:12:11,285 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 06:12:11,286 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 06:12:11,286 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 06:12:11,286 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 06:12:11,286 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 06:12:11,287 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 06:12:11,287 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 06:12:11,287 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 06:12:11,287 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 06:12:11,288 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 06:12:11,288 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 06:12:11,288 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 06:12:11,291 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'CREATED', 'UserPost') label distribution: [200, 400]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [200, 400]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [126, 252]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [200, 400]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [200, 400]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'MANAGES', 'Project') label distribution: [80, 160]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [200, 400]
+2025-08-22 06:12:11,295 [INFO] - [Train] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [400, 801]
+2025-08-22 06:12:11,295 [INFO] - [Val] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:12:11,295 [INFO] - [Val] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:12:11,295 [INFO] - [Val] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:12:11,296 [INFO] - [Val] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Val] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Val] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:12:11,296 [INFO] - [Val] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Val] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:12:11,296 [INFO] - [Test] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:12:45,171 [INFO] - Configuration loaded successfully.
+2025-08-22 06:12:45,171 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 06:12:45,172 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 06:12:45,173 [INFO] - Use pytorch device_name: cpu
+2025-08-22 06:12:45,173 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 06:12:48,475 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 06:12:48,503 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 06:12:49,029 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 06:12:49,044 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 06:12:49,255 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 06:12:50,024 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:50,198 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 06:12:50,421 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 06:12:50,432 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 06:12:50,443 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 06:12:50,910 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:51,085 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 06:12:51,282 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 06:12:51,282 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:53,324 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 06:12:53,325 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 06:12:53,353 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 06:12:53,356 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 06:12:53,357 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 06:12:53,358 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 06:12:53,358 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 06:12:53,358 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 06:12:53,359 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 06:12:53,359 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 06:12:53,359 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 06:12:53,360 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 06:12:53,360 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 06:12:53,360 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 06:12:53,361 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 06:12:53,361 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 06:12:53,361 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 06:12:53,363 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'CREATED', 'UserPost') label distribution: [200, 400]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [200, 400]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [126, 252]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [200, 400]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [200, 400]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'MANAGES', 'Project') label distribution: [80, 160]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [200, 400]
+2025-08-22 06:12:53,368 [INFO] - [Train] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [400, 801]
+2025-08-22 06:12:53,368 [INFO] - [Val] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:12:53,368 [INFO] - [Val] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:12:53,368 [INFO] - [Val] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:12:53,368 [INFO] - [Val] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:12:53,368 [INFO] - [Val] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:12:53,368 [INFO] - [Val] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:12:53,369 [INFO] - [Val] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:12:53,369 [INFO] - [Val] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:12:53,369 [INFO] - [Test] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:13:25,093 [INFO] - Configuration loaded successfully.
+2025-08-22 06:13:25,093 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 06:13:25,094 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 06:13:25,095 [INFO] - Use pytorch device_name: cpu
+2025-08-22 06:13:25,095 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 06:13:28,390 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 06:13:28,411 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 06:13:28,907 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 06:13:28,920 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 06:13:29,123 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 06:13:29,936 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 06:13:30,107 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 06:13:30,321 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 06:13:30,333 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 06:13:30,345 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 06:13:30,839 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 06:13:31,033 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 06:13:31,202 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 06:13:31,204 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 06:13:33,122 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 06:13:33,122 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 06:13:33,175 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 06:13:33,180 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 06:13:33,181 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 06:13:33,182 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 06:13:33,182 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 06:13:33,183 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 06:13:33,184 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 06:13:33,184 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 06:13:33,185 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 06:13:33,186 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 06:13:33,187 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 06:13:33,187 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 06:13:33,188 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 06:13:33,189 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 06:13:33,189 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 06:13:33,193 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 06:13:33,208 [INFO] - [Train] Edge type ('User', 'CREATED', 'UserPost') label distribution: [200, 400]
+2025-08-22 06:13:33,208 [INFO] - [Train] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [200, 400]
+2025-08-22 06:13:33,209 [INFO] - [Train] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [126, 252]
+2025-08-22 06:13:33,209 [INFO] - [Train] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [200, 400]
+2025-08-22 06:13:33,209 [INFO] - [Train] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [200, 400]
+2025-08-22 06:13:33,209 [INFO] - [Train] Edge type ('User', 'MANAGES', 'Project') label distribution: [80, 160]
+2025-08-22 06:13:33,209 [INFO] - [Train] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [200, 400]
+2025-08-22 06:13:33,209 [INFO] - [Train] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [400, 801]
+2025-08-22 06:13:33,209 [INFO] - [Val] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:13:33,210 [INFO] - [Val] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:13:33,210 [INFO] - [Val] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:13:33,210 [INFO] - [Val] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:13:33,210 [INFO] - [Val] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:13:33,210 [INFO] - [Val] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:13:33,210 [INFO] - [Val] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:13:33,210 [INFO] - [Val] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:13:33,210 [INFO] - [Test] Edge type ('User', 'CREATED', 'UserPost') label distribution: [25, 50]
+2025-08-22 06:13:33,211 [INFO] - [Test] Edge type ('User', 'ENROLLED_IN', 'DailyActivity') label distribution: [25, 50]
+2025-08-22 06:13:33,211 [INFO] - [Test] Edge type ('User', 'HAS_SKILL', 'Skill') label distribution: [15, 31]
+2025-08-22 06:13:33,211 [INFO] - [Test] Edge type ('User', 'HAS_STRENGTH', 'Strength') label distribution: [25, 50]
+2025-08-22 06:13:33,211 [INFO] - [Test] Edge type ('User', 'HAS_SUBSCRIPTION', 'Subscription') label distribution: [25, 50]
+2025-08-22 06:13:33,211 [INFO] - [Test] Edge type ('User', 'MANAGES', 'Project') label distribution: [10, 20]
+2025-08-22 06:13:33,211 [INFO] - [Test] Edge type ('User', 'SUBMITTED', 'Idea') label distribution: [25, 50]
+2025-08-22 06:13:33,211 [INFO] - [Test] Edge type ('User', 'VOTED_ON', 'Idea') label distribution: [49, 99]
+2025-08-22 06:13:33,212 [INFO] - Model initialized. Starting training for 501 epochs.
+2025-08-22 06:19:50,747 [INFO] - Configuration loaded successfully.
+2025-08-22 06:19:50,747 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 06:19:50,748 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 06:19:50,749 [INFO] - Use pytorch device_name: cpu
+2025-08-22 06:19:50,749 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 06:19:54,113 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 06:19:54,134 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 06:19:54,630 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 06:19:54,646 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 06:19:54,866 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 06:19:55,941 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 06:19:56,483 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 06:19:57,261 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 06:19:57,279 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 06:19:57,300 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 06:19:58,017 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 06:19:58,279 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 06:19:58,546 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 06:19:58,547 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 06:20:00,686 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 06:20:00,686 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 06:20:00,707 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 06:20:00,711 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 06:20:00,712 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 06:20:00,712 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 06:20:00,712 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 06:20:00,712 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 06:20:00,713 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 06:20:00,713 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 06:20:00,713 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 06:20:00,714 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 06:20:00,714 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 06:20:00,714 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 06:20:00,714 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 06:20:00,715 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 06:20:00,715 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 06:20:00,716 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 06:26:06,504 [INFO] - Configuration loaded successfully.
+2025-08-22 06:26:06,504 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 06:26:06,504 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 06:26:06,505 [INFO] - Use pytorch device_name: cpu
+2025-08-22 06:26:06,505 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 06:26:09,838 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 06:26:09,865 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 06:26:10,424 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 06:26:10,439 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 06:26:10,678 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 06:26:11,724 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 06:26:12,139 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 06:26:12,449 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 06:26:12,460 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 06:26:12,471 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 06:26:12,967 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 06:26:13,158 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 06:26:13,326 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 06:26:13,327 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 06:26:15,004 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 06:26:15,004 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 06:26:15,032 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 06:26:15,034 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 06:26:15,034 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 06:26:15,034 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 06:26:15,034 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 06:26:15,034 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 06:26:15,035 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 06:26:15,035 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 06:26:15,035 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 06:26:15,035 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 06:26:15,036 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 06:26:15,036 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 06:26:15,036 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 06:26:15,037 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 06:26:15,037 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 06:26:15,039 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 06:26:15,471 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,504 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,536 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,567 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,599 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,632 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,661 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,695 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:15,695 [INFO] - Epoch 000, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:16,977 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,009 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,047 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,081 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,115 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,148 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,185 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,219 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:17,220 [INFO] - Epoch 005, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:20,440 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,495 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,547 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,598 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,649 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,703 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,757 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,810 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:20,810 [INFO] - Epoch 010, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:23,149 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,220 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,281 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,385 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,441 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,668 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,742 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,848 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:23,849 [INFO] - Epoch 015, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:26,206 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,246 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,288 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,331 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,372 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,416 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,460 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,507 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:26,507 [INFO] - Epoch 020, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:28,234 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,285 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,343 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,393 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,466 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,550 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,610 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,662 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:28,662 [INFO] - Epoch 025, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:30,392 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,427 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,463 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,500 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,534 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,571 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,607 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,643 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:30,643 [INFO] - Epoch 030, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:32,339 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,381 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,422 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,468 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,513 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,569 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,630 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,699 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:32,699 [INFO] - Epoch 035, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:35,001 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,041 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,088 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,135 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,181 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,236 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,285 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,335 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:35,335 [INFO] - Epoch 040, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:37,507 [INFO] - [Val-CREATED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,553 [INFO] - [Val-ENROLLED_IN] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,620 [INFO] - [Val-HAS_SKILL] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,674 [INFO] - [Val-HAS_STRENGTH] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,735 [INFO] - [Val-HAS_SUBSCRIPTION] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,787 [INFO] - [Val-MANAGES] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,857 [INFO] - [Val-SUBMITTED] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,929 [INFO] - [Val-VOTED_ON] Average AUC: 0.0000 | Breakdown: {}
+2025-08-22 06:26:37,929 [INFO] - Epoch 045, Loss: 0.0000, Val AUC: 0.0000
+2025-08-22 06:26:37,930 [INFO] - Early stopping at epoch 45
+2025-08-22 06:26:37,933 [ERROR] - Failed to load model or test: [Errno 2] No such file or directory: 'best_model.pth'
+2025-08-22 06:35:36,437 [INFO] - Configuration loaded successfully.
+2025-08-22 06:35:36,438 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 06:35:36,439 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 06:35:36,440 [INFO] - Use pytorch device_name: cpu
+2025-08-22 06:35:36,440 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 06:35:39,705 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 06:35:39,734 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 06:35:40,301 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 06:35:40,323 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 06:35:40,777 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 06:35:41,902 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 06:35:42,162 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 06:35:42,398 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 06:35:42,410 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 06:35:42,418 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 06:35:43,080 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 06:35:43,330 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 06:35:43,641 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 06:35:43,648 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 06:35:45,869 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 06:35:45,934 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 06:35:45,978 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 06:35:45,981 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 06:35:45,981 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 06:35:45,981 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 06:35:45,982 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 06:35:45,982 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 06:35:45,982 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 06:35:45,983 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 06:35:45,984 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 06:35:45,984 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 06:35:45,985 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 06:35:45,985 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 06:35:45,985 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 06:35:45,986 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 06:35:45,986 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 06:35:45,987 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 07:17:36,794 [INFO] - Configuration loaded successfully.
+2025-08-22 07:17:36,794 [INFO] - Connecting to Memgraph at 127.0.0.1:7688
+2025-08-22 07:17:36,796 [INFO] - Loading sentence embedding model: all-MiniLM-L6-v2
+2025-08-22 07:17:36,796 [INFO] - Use pytorch device_name: cpu
+2025-08-22 07:17:36,797 [INFO] - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-08-22 07:17:39,989 [INFO] - Fetching all relevant nodes from the database...
+2025-08-22 07:17:40,015 [INFO] - Fetched 4462 nodes across 13 types
+2025-08-22 07:17:40,521 [INFO] - Created BusinessCategory nodes with torch.Size([400, 384]) features
+2025-08-22 07:17:40,535 [INFO] - Created BusinessSkill nodes with torch.Size([4, 384]) features
+2025-08-22 07:17:40,746 [INFO] - Created DailyActivity nodes with torch.Size([600, 384]) features
+2025-08-22 07:17:41,580 [INFO] - Created Idea nodes with torch.Size([500, 384]) features
+2025-08-22 07:17:41,768 [INFO] - Created Project nodes with torch.Size([200, 384]) features
+2025-08-22 07:17:42,000 [INFO] - Created Region nodes with torch.Size([249, 384]) features
+2025-08-22 07:17:42,012 [INFO] - Created Skill nodes with torch.Size([1, 384]) features
+2025-08-22 07:17:42,025 [INFO] - Created SkillCategory nodes with torch.Size([1, 384]) features
+2025-08-22 07:17:42,599 [INFO] - Created Strength nodes with torch.Size([500, 384]) features
+2025-08-22 07:17:42,974 [INFO] - Created StrengthCategory nodes with torch.Size([504, 384]) features
+2025-08-22 07:17:43,156 [INFO] - Created Subscription nodes with torch.Size([503, 384]) features
+2025-08-22 07:17:43,161 [INFO] - Created User nodes with torch.Size([500, 384]) features
+2025-08-22 07:17:44,867 [INFO] - Created UserPost nodes with torch.Size([500, 384]) features
+2025-08-22 07:17:44,887 [INFO] - Fetching all edges to build graph structure...
+2025-08-22 07:17:44,917 [INFO] - Fetched 5533 edges across 12 relation types
+2025-08-22 07:17:44,921 [INFO] - Added edge type (Project - IN_CATEGORY -> BusinessCategory) with 300 edges
+2025-08-22 07:17:44,922 [INFO] - Added edge type (Project - IN_REGION -> Region) with 300 edges
+2025-08-22 07:17:44,922 [INFO] - Added edge type (Project - REQUIRES_SKILL -> BusinessSkill) with 19 edges
+2025-08-22 07:17:44,923 [INFO] - Added edge type (Skill - IN_CATEGORY -> SkillCategory) with 1 edges
+2025-08-22 07:17:44,923 [INFO] - Added edge type (Strength - IN_CATEGORY -> StrengthCategory) with 500 edges
+2025-08-22 07:17:44,923 [INFO] - Added edge type (User - CREATED -> UserPost) with 500 edges
+2025-08-22 07:17:44,923 [INFO] - Added edge type (User - ENROLLED_IN -> DailyActivity) with 500 edges
+2025-08-22 07:17:44,924 [INFO] - Added edge type (User - HAS_SKILL -> Skill) with 314 edges
+2025-08-22 07:17:44,924 [INFO] - Added edge type (User - HAS_STRENGTH -> Strength) with 500 edges
+2025-08-22 07:17:44,924 [INFO] - Added edge type (User - HAS_SUBSCRIPTION -> Subscription) with 500 edges
+2025-08-22 07:17:44,924 [INFO] - Added edge type (User - MANAGES -> Project) with 200 edges
+2025-08-22 07:17:44,925 [INFO] - Added edge type (User - SUBMITTED -> Idea) with 500 edges
+2025-08-22 07:17:44,925 [INFO] - Added edge type (User - VOTED_ON -> Idea) with 999 edges
+2025-08-22 07:17:44,925 [INFO] - Graph construction complete: 13 node types, 13 edge types
+2025-08-22 07:17:44,926 [INFO] - Selected 8 edge types for training: [('User', 'CREATED', 'UserPost'), ('User', 'ENROLLED_IN', 'DailyActivity'), ('User', 'HAS_SKILL', 'Skill'), ('User', 'HAS_STRENGTH', 'Strength'), ('User', 'HAS_SUBSCRIPTION', 'Subscription'), ('User', 'MANAGES', 'Project'), ('User', 'SUBMITTED', 'Idea'), ('User', 'VOTED_ON', 'Idea')]
+2025-08-22 07:17:45,670 [INFO] - Epoch 005, Loss: 5.1632
+2025-08-22 07:17:45,671 [INFO] - Train AUC: 0.6332 | Types: 8
+2025-08-22 07:17:45,671 [INFO] - Val AUC: 0.5099 | Types: 8
+2025-08-22 07:17:46,292 [INFO] - Epoch 010, Loss: 4.8218
+2025-08-22 07:17:46,292 [INFO] - Train AUC: 0.7329 | Types: 8
+2025-08-22 07:17:46,292 [INFO] - Val AUC: 0.4455 | Types: 8
+2025-08-22 07:17:46,909 [INFO] - Epoch 015, Loss: 4.5864
+2025-08-22 07:17:46,910 [INFO] - Train AUC: 0.7557 | Types: 8
+2025-08-22 07:17:46,910 [INFO] - Val AUC: 0.3788 | Types: 8
+2025-08-22 07:17:47,485 [INFO] - Epoch 020, Loss: 4.3553
+2025-08-22 07:17:47,486 [INFO] - Train AUC: 0.7894 | Types: 8
+2025-08-22 07:17:47,486 [INFO] - Val AUC: 0.4067 | Types: 8
+2025-08-22 07:17:48,117 [INFO] - Epoch 025, Loss: 4.1988
+2025-08-22 07:17:48,117 [INFO] - Train AUC: 0.8113 | Types: 8
+2025-08-22 07:17:48,117 [INFO] - Val AUC: 0.4447 | Types: 8
+2025-08-22 07:17:48,863 [INFO] - Epoch 030, Loss: 3.9965
+2025-08-22 07:17:48,863 [INFO] - Train AUC: 0.8284 | Types: 8
+2025-08-22 07:17:48,863 [INFO] - Val AUC: 0.4448 | Types: 8
+2025-08-22 07:17:49,765 [INFO] - Epoch 035, Loss: 3.8071
+2025-08-22 07:17:49,765 [INFO] - Train AUC: 0.8522 | Types: 8
+2025-08-22 07:17:49,765 [INFO] - Val AUC: 0.4800 | Types: 8
+2025-08-22 07:17:51,141 [INFO] - Epoch 040, Loss: 3.7840
+2025-08-22 07:17:51,141 [INFO] - Train AUC: 0.8708 | Types: 8
+2025-08-22 07:17:51,141 [INFO] - Val AUC: 0.4902 | Types: 8
+2025-08-22 07:17:51,897 [INFO] - Epoch 045, Loss: 3.4166
+2025-08-22 07:17:51,897 [INFO] - Train AUC: 0.8893 | Types: 8
+2025-08-22 07:17:51,897 [INFO] - Val AUC: 0.4937 | Types: 8
+2025-08-22 07:17:52,713 [INFO] - Epoch 050, Loss: 3.3250
+2025-08-22 07:17:52,713 [INFO] - Train AUC: 0.9150 | Types: 8
+2025-08-22 07:17:52,713 [INFO] - Val AUC: 0.5053 | Types: 8
+2025-08-22 07:17:54,096 [INFO] - Epoch 055, Loss: 3.4559
+2025-08-22 07:17:54,096 [INFO] - Train AUC: 0.9042 | Types: 8
+2025-08-22 07:17:54,096 [INFO] - Val AUC: 0.4703 | Types: 8
+2025-08-22 07:17:54,878 [INFO] - Epoch 060, Loss: 3.6957
+2025-08-22 07:17:54,878 [INFO] - Train AUC: 0.8866 | Types: 8
+2025-08-22 07:17:54,878 [INFO] - Val AUC: 0.4318 | Types: 8
+2025-08-22 07:17:55,648 [INFO] - Epoch 065, Loss: 3.3527
+2025-08-22 07:17:55,648 [INFO] - Train AUC: 0.9013 | Types: 8
+2025-08-22 07:17:55,648 [INFO] - Val AUC: 0.4406 | Types: 8
+2025-08-22 07:17:56,465 [INFO] - Epoch 070, Loss: 3.4287
+2025-08-22 07:17:56,466 [INFO] - Train AUC: 0.9212 | Types: 8
+2025-08-22 07:17:56,466 [INFO] - Val AUC: 0.4856 | Types: 8
+2025-08-22 07:17:57,264 [INFO] - Epoch 075, Loss: 3.0617
+2025-08-22 07:17:57,264 [INFO] - Train AUC: 0.9359 | Types: 8
+2025-08-22 07:17:57,264 [INFO] - Val AUC: 0.5032 | Types: 8
+2025-08-22 07:17:58,027 [INFO] - Epoch 080, Loss: 2.7725
+2025-08-22 07:17:58,027 [INFO] - Train AUC: 0.9375 | Types: 8
+2025-08-22 07:17:58,027 [INFO] - Val AUC: 0.5090 | Types: 8
+2025-08-22 07:17:58,801 [INFO] - Epoch 085, Loss: 2.3894
+2025-08-22 07:17:58,801 [INFO] - Train AUC: 0.9476 | Types: 8
+2025-08-22 07:17:58,802 [INFO] - Val AUC: 0.5078 | Types: 8
+2025-08-22 07:17:59,547 [INFO] - Epoch 090, Loss: 2.3837
+2025-08-22 07:17:59,548 [INFO] - Train AUC: 0.9518 | Types: 8
+2025-08-22 07:17:59,548 [INFO] - Val AUC: 0.5014 | Types: 8
+2025-08-22 07:18:00,316 [INFO] - Epoch 095, Loss: 2.2558
+2025-08-22 07:18:00,316 [INFO] - Train AUC: 0.9555 | Types: 8
+2025-08-22 07:18:00,316 [INFO] - Val AUC: 0.4915 | Types: 8
+2025-08-22 07:18:01,102 [INFO] - Epoch 100, Loss: 2.2795
+2025-08-22 07:18:01,102 [INFO] - Train AUC: 0.9583 | Types: 8
+2025-08-22 07:18:01,102 [INFO] - Val AUC: 0.5265 | Types: 8
+2025-08-22 07:18:02,024 [INFO] - Epoch 105, Loss: 2.2902
+2025-08-22 07:18:02,024 [INFO] - Train AUC: 0.9602 | Types: 8
+2025-08-22 07:18:02,024 [INFO] - Val AUC: 0.5171 | Types: 8
+2025-08-22 07:18:03,365 [INFO] - Epoch 110, Loss: 1.9744
+2025-08-22 07:18:03,365 [INFO] - Train AUC: 0.9636 | Types: 8
+2025-08-22 07:18:03,366 [INFO] - Val AUC: 0.5201 | Types: 8
+2025-08-22 07:18:04,704 [INFO] - Epoch 115, Loss: 1.7543
+2025-08-22 07:18:04,704 [INFO] - Train AUC: 0.9679 | Types: 8
+2025-08-22 07:18:04,704 [INFO] - Val AUC: 0.4973 | Types: 8
+2025-08-22 07:18:05,923 [INFO] - Epoch 120, Loss: 1.7505
+2025-08-22 07:18:05,924 [INFO] - Train AUC: 0.9703 | Types: 8
+2025-08-22 07:18:05,924 [INFO] - Val AUC: 0.5020 | Types: 8
+2025-08-22 07:18:07,178 [INFO] - Epoch 125, Loss: 1.7206
+2025-08-22 07:18:07,178 [INFO] - Train AUC: 0.9714 | Types: 8
+2025-08-22 07:18:07,178 [INFO] - Val AUC: 0.5106 | Types: 8
+2025-08-22 07:18:08,134 [INFO] - Epoch 130, Loss: 1.7814
+2025-08-22 07:18:08,135 [INFO] - Train AUC: 0.9720 | Types: 8
+2025-08-22 07:18:08,135 [INFO] - Val AUC: 0.5222 | Types: 8
+2025-08-22 07:18:08,993 [INFO] - Epoch 135, Loss: 1.5839
+2025-08-22 07:18:08,994 [INFO] - Train AUC: 0.9732 | Types: 8
+2025-08-22 07:18:08,994 [INFO] - Val AUC: 0.5297 | Types: 8
+2025-08-22 07:18:09,800 [INFO] - Epoch 140, Loss: 1.6822
+2025-08-22 07:18:09,801 [INFO] - Train AUC: 0.9739 | Types: 8
+2025-08-22 07:18:09,801 [INFO] - Val AUC: 0.5360 | Types: 8
+2025-08-22 07:18:10,590 [INFO] - Epoch 145, Loss: 1.5388
+2025-08-22 07:18:10,590 [INFO] - Train AUC: 0.9770 | Types: 8
+2025-08-22 07:18:10,591 [INFO] - Val AUC: 0.5314 | Types: 8
+2025-08-22 07:18:11,321 [INFO] - Epoch 150, Loss: 1.4638
+2025-08-22 07:18:11,321 [INFO] - Train AUC: 0.9773 | Types: 8
+2025-08-22 07:18:11,321 [INFO] - Val AUC: 0.5271 | Types: 8
+2025-08-22 07:18:12,117 [INFO] - Epoch 155, Loss: 1.4375
+2025-08-22 07:18:12,117 [INFO] - Train AUC: 0.9774 | Types: 8
+2025-08-22 07:18:12,117 [INFO] - Val AUC: 0.5137 | Types: 8
+2025-08-22 07:18:12,903 [INFO] - Epoch 160, Loss: 1.4218
+2025-08-22 07:18:12,903 [INFO] - Train AUC: 0.9780 | Types: 8
+2025-08-22 07:18:12,903 [INFO] - Val AUC: 0.5178 | Types: 8
+2025-08-22 07:18:13,771 [INFO] - Epoch 165, Loss: 1.5439
+2025-08-22 07:18:13,771 [INFO] - Train AUC: 0.9771 | Types: 8
+2025-08-22 07:18:13,771 [INFO] - Val AUC: 0.5412 | Types: 8
+2025-08-22 07:18:15,743 [INFO] - Epoch 170, Loss: 1.4478
+2025-08-22 07:18:15,743 [INFO] - Train AUC: 0.9801 | Types: 8
+2025-08-22 07:18:15,744 [INFO] - Val AUC: 0.5303 | Types: 8
+2025-08-22 07:18:16,580 [INFO] - Epoch 175, Loss: 1.3978
+2025-08-22 07:18:16,580 [INFO] - Train AUC: 0.9796 | Types: 8
+2025-08-22 07:18:16,580 [INFO] - Val AUC: 0.5311 | Types: 8
+2025-08-22 07:18:17,400 [INFO] - Epoch 180, Loss: 1.3208
+2025-08-22 07:18:17,400 [INFO] - Train AUC: 0.9797 | Types: 8
+2025-08-22 07:18:17,400 [INFO] - Val AUC: 0.5266 | Types: 8
+2025-08-22 07:18:18,227 [INFO] - Epoch 185, Loss: 1.3368
+2025-08-22 07:18:18,227 [INFO] - Train AUC: 0.9808 | Types: 8
+2025-08-22 07:18:18,227 [INFO] - Val AUC: 0.5379 | Types: 8
+2025-08-22 07:18:19,081 [INFO] - Epoch 190, Loss: 1.3636
+2025-08-22 07:18:19,082 [INFO] - Train AUC: 0.9796 | Types: 8
+2025-08-22 07:18:19,082 [INFO] - Val AUC: 0.5279 | Types: 8
+2025-08-22 07:18:19,990 [INFO] - Epoch 195, Loss: 1.3172
+2025-08-22 07:18:19,990 [INFO] - Train AUC: 0.9787 | Types: 8
+2025-08-22 07:18:19,990 [INFO] - Val AUC: 0.5207 | Types: 8
+2025-08-22 07:18:20,778 [INFO] - Epoch 200, Loss: 1.4000
+2025-08-22 07:18:20,778 [INFO] - Train AUC: 0.9821 | Types: 8
+2025-08-22 07:18:20,778 [INFO] - Val AUC: 0.5267 | Types: 8
+2025-08-22 07:18:20,841 [INFO] - Final Test AUC: 0.5116 | Breakdown: {"('User', 'CREATED', 'UserPost')": 0.46399999999999997, "('User', 'ENROLLED_IN', 'DailyActivity')": 0.51, "('User', 'HAS_SKILL', 'Skill')": 0.886021505376344, "('User', 'HAS_STRENGTH', 'Strength')": 0.5472, "('User', 'HAS_SUBSCRIPTION', 'Subscription')": 0.33599999999999997, "('User', 'MANAGES', 'Project')": 0.575, "('User', 'SUBMITTED', 'Idea')": 0.27159999999999995, "('User', 'VOTED_ON', 'Idea')": 0.502679859822717}

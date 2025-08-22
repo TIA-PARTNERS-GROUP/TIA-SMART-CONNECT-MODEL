@@ -1,0 +1,14 @@
+[database]
+host = "127.0.0.1"
+port = 7688
+
+[model]
+embedding_model = "all-MiniLM-L6-v2"
+output_path = "./models/model.pth"
+
+[training]
+epochs = 501
+learning_rate = 0.001
+
+[logging]
+log_file = "./logs/training.log"

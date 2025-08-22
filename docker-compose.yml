@@ -1,0 +1,26 @@
+services:
+  # ... (all your other services: mariadb, memgraph, kafka, etc.)
+
+  # --- Python GNN & API Service ---
+  gnn-api:
+    build:
+      context: . # Path to your Python project
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - MEMGRAPH_HOST=memgraph
+      - MEMGRAPH_PORT=7687
+      - NVIDIA_VISIBLE_DEVICES=all # Makes GPU visible
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  mariadb_data:
+  memgraph_data:
